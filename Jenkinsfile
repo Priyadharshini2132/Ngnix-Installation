@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         ANSIBLE_HOST_KEY_CHECKING = 'False'  // Disable SSH host key checking
-        INVENTORY_FILE = '/path/to/your/inventory'  // Path to your Ansible inventory file
+        INVENTORY_FILE = '/etc/ansible/hosts'  // Path to your Ansible inventory file
     }
 
     stages {
         stage('Checkout Code') {
             steps {
                 // Checkout your code repository (where the Ansible playbook is stored)
-                git 'https://github.com/your-repository.git'
+                git 'https://github.com/Priyadharshini2132/Ngnix-Installation.git'
             }
         }
 
