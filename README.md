@@ -70,8 +70,10 @@ ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/ansible_id_rsa
 ### 3.2 Ansible SSH Key (For Slave Node Login)
 
 - ssh-keygen -t rsa -b 4096 -f /var/lib/jenkins/.ssh/ansible_id_rsa -N ""
+  
   **Copy this key to nginx_vm (10.0.2.5):**
 - ssh-copy-id -i /var/lib/jenkins/.ssh/ansible_id_rsa guest@10.0.2.5
+  
  **Change the permissions of the rsa file**
 - sudo su - jenkins
 - sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/ansible_id_rsa
@@ -79,17 +81,18 @@ ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/ansible_id_rsa
 - sudo chmod 600 /var/lib/jenkins/.ssh/ansible_id_rsa
 - sudo chmod 644 /var/lib/jenkins/.ssh/ansible_id_rsa.pub
 - sudo systemctl restart jenkins
+  
 **run this command from jenkins server** 
 - sudo su - jenkins
 - ssh -i /var/lib/jenkins/.ssh/ansible_id_rsa guest@10.0.2.5
 
 ## Step 4 configure new project in Jenkins
 
-4.1 New item--> select pipeline project -->save it
-4.2 Go to created project --> select configure --> paste the jenkinsfile
-4.3 make sure to add git ssh key in the below path
-    Manage jenkins --> Credentials --> add generated git ssh from the jenkins server(step 3.2)
-    cat /var/lib/jenkins/.ssh/github_id_rsa.pub
+4.1 - New item--> select pipeline project -->save it
+4.2 - Go to created project --> select configure --> paste the jenkinsfile
+4.3 - make sure to add git ssh key in the below path
+    - Manage jenkins --> Credentials --> add generated git ssh from the jenkins server(step 3.2)
+    - cat /var/lib/jenkins/.ssh/github_id_rsa.pub
 
 ## Verification steps
 
